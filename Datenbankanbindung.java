@@ -42,10 +42,19 @@ public class Datenbankanbindung {
     /**
      * Holt sich die Filme aus der Datenbank
      * 
-     * @param name Der Name
+     * @return Eine Liste mit allen Filmen
      */
     public static List<Film> getFilme() {
         return getAllDataInColumn("film", rs -> new Film(rs.getInt("idFilm"), rs.getString("name"), rs.getInt("jahr"), rs.getInt("laenge"), rs.getInt("FSK")));
+    }
+    
+    /**
+     * Holt sich die Kinosaele aus der Datenbank
+     * 
+     * @return Eine Liste mit allen Kinosaele
+     */
+    public static List<Kinosaal> getKinosaal() {
+        return getAllDataInColumn("kinosaal", rs -> new Kinosaal(rs.getInt("idKinosaal")));
     }
 
 }
