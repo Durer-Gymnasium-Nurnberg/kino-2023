@@ -45,7 +45,7 @@ public class Datenbankanbindung {
      * @param name Der Name
      */
     public static List<Film> getFilme() {
-        return getAllDataInColumn("film", rs -> new Film(rs.getString("name"), rs.getInt("jahr"), rs.getInt("laenge"), rs.getInt("FSK")));
+        return getAllDataInColumn("film", rs -> new Film(rs.getInt("idFilm"), rs.getString("name"), rs.getInt("jahr"), rs.getInt("laenge"), rs.getInt("FSK")));
     }
 
 }
