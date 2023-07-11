@@ -6,6 +6,7 @@ public class Film
     public int jahr;
     public int laenge;
     public int fsk;
+    public String titel;
     
     
     public Film(int filmID, String name, int jahr,int laenge,int fsk)
