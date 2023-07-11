@@ -63,7 +63,7 @@ public class Datenbankanbindung {
     }
     
     private static GregorianCalendar createGregFromSQLDate(Date date, Time time) {
-        
+        return new GregorianCalendar(GregorianCalendar.from(date.toLocalDate().atTime(time.toLocalTime()).atZone(0)));
     }
 
 }
