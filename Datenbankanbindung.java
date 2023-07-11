@@ -2,6 +2,7 @@ import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.function.*;
+import java.util.GregorianCalendar;
 
 public class Datenbankanbindung {
     private static Connection conn;
@@ -50,6 +51,19 @@ public class Datenbankanbindung {
      */
     public static List<Kinosaal> getKinosaal() throws SQLException {
         return getAllDataInColumn("kinosaal", rs -> new Kinosaal(rs.getInt("idKinosaal")));
+    }
+    
+    /**
+     * Holt sich die Kinosaele aus der Datenbank
+     * 
+     * @return Eine Liste mit allen Kinosaelen
+     */
+    public static List<Vorstellung> getVorstellung() throws SQLException {
+        return getAllDataInColumn("vorstellung", rs -> new Vorstellung(rs.getInt("idVorstellung"), createGregFromSQLDate(rs.getDate("datum"), rs.getTime("zeit")), rs.getInt("idFilm"), rs.getInt("idKinosaal")));
+    }
+    
+    private static GregorianCalendar createGregFromSQLDate(Date date, Time time) {
+        
     }
 
 }
