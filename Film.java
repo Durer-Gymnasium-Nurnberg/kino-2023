@@ -61,4 +61,10 @@ public class Film
     public void setFsk(int fsk){
         this.fsk = fsk;
     }
+    
+    public String toString(){
+        return name;
+    
+    
+    }
 }
