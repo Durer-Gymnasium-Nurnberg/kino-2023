@@ -5,54 +5,136 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import java.util.Vector;
+import javax.swing.JPanel;
+import java.util.List;
 
 public class Fenster extends JFrame implements ActionListener {
     private JTextField nameEingabe;
     private JButton reservieren;
     
-    public Fenster() {
-        super("Kinobuchungssystem");
-        
-        setSize(600,200);
-        setLayout( new GridLayout(3,2) );
-        hinzufuegen();
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);        
-    }
+    private JButton bestätigenF;
+    private JButton bestätigenV;
+    private JButton bestätigenS;
+    private JComboBox filmAuswahl;
+    private JComboBox vorstellungsAuswahl;
+    private JComboBox sitzplatzAuswahl;
+    JFrame jcbJFrameF = new JFrame();
+    JFrame jcbJFrameV = new JFrame();
+    JFrame jcbJFrameS = new JFrame();
+    private String wahlFilm;
+    private Vector wahlVorstellung;
+    private String wahlSitz;
     
-    private void hinzufuegen() {
-        JLabel titel = new JLabel("Kinobuchungssystem");
-        add(titel);
-        add( new JLabel() );
-        
-        JLabel name = new JLabel("Name: ");
-        add(name);
-        nameEingabe = new JTextField();
-        add(nameEingabe);
-        
-        add( new JLabel() );
-        reservieren = new JButton("Reservieren");
-        reservieren.addActionListener(this);
-        add(reservieren);
-        
-    }
     
     public void actionPerformed(ActionEvent event) {
         Object verursacher = event.getSource();
-        
-        if (verursacher == reservieren) {
-            if (nameEingabe.getText().length() > 0) {
-                System.out.println("Reserviert!");
-            } else {
-                System.out.println("Bitte Namen eingeben!");
-            }
-            
+        if (verursacher == bestätigenF)
+        {
+            jcbJFrameF.setVisible(false);
+            vorstellungAuswahl();
+        }
+        if (verursacher == bestätigenV)
+        {
+            jcbJFrameV.setVisible(false);
+            sitzplatzAuswahl();
+        }
+        if (verursacher == bestätigenS)
+        {
+            jcbJFrameS.setVisible(false);
+        }
+        if (verursacher == filmAuswahl)
+        {
+            JComboBox cbf = (JComboBox)event.getSource();
+            wahlFilm = (String)cbf.getSelectedItem();
+        }
+        if (verursacher == vorstellungsAuswahl)
+        {
+            JComboBox cbv = (JComboBox)event.getSource();
+            wahlVorstellung = (Vector)cbv.getSelectedItem();
+        }
+        if (verursacher == sitzplatzAuswahl)
+        {
+            JComboBox cbs = (JComboBox)event.getSource();
+            wahlSitz = (String)cbs.getSelectedItem();
         }
     }
     
     public static void main(String[] args) {
         new Fenster();
     }
+    
+    public void filmAuswahl()
+    {
+        jcbJFrameF.setTitle("JComboBox Beispiel");
+        jcbJFrameF.setSize(250, 250);
+        JPanel panel = new JPanel();
+ 
+        JLabel name = new JLabel("Filmauswahl");
+        panel.add(name);
+        // String comboBoxListe[] = {"Thor", "Thor9", "Leos privateste Momente"};
+        String comboBoxListe[] = {};
+    
+        //Datenbankanbindung.getFilme()
+        filmAuswahl = new JComboBox(comboBoxListe);
+        filmAuswahl.addActionListener(this);
+        panel.add(filmAuswahl);
+        
+        add( new JLabel() );
+        bestätigenF = new JButton("Bestätigen");
+        bestätigenF.addActionListener(this);
+        panel.add(bestätigenF);
+        
+        jcbJFrameF.add(panel);
+        jcbJFrameF.setVisible(true);
+    }
+    public void vorstellungAuswahl()
+    {
+        jcbJFrameV.setTitle("Vorstellunsauswahl");
+        jcbJFrameV.setSize(250, 250);
+        JPanel panel = new JPanel();
+ 
+        JLabel frage = new JLabel("Vorstellungsauswahl");
+        panel.add(frage);
+
+        Vector comboBoxListe[] = {};
+ 
+        vorstellungsAuswahl = new JComboBox(comboBoxListe);
+        vorstellungsAuswahl.addActionListener(this);
+        panel.add(vorstellungsAuswahl);
+        
+        add( new JLabel() );
+        bestätigenV = new JButton("Bestätigen");
+        bestätigenV.addActionListener(this);
+        panel.add(bestätigenV);
+ 
+        jcbJFrameV.add(panel);
+        jcbJFrameV.setVisible(true);
+    }
+    public void sitzplatzAuswahl()
+    {
+        jcbJFrameS.setTitle("Sitzplatzwahl");
+        jcbJFrameS.setSize(250, 250);
+        JPanel panel = new JPanel();
+ 
+        JLabel frage = new JLabel("Sitzplatzwahl");
+        panel.add(frage);
+
+        String comboBoxListe[] = {"12","69"};
+ 
+        sitzplatzAuswahl = new JComboBox(comboBoxListe);
+        sitzplatzAuswahl.addActionListener(this);
+        panel.add(sitzplatzAuswahl);
+        
+        add( new JLabel() );
+        bestätigenS = new JButton("Bestätigen");
+        bestätigenS.addActionListener(this);
+        panel.add(bestätigenS);
+ 
+        jcbJFrameS.add(panel);
+        jcbJFrameS.setVisible(true);
+    }
+    
     
 }
