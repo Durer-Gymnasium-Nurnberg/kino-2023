@@ -37,6 +37,19 @@ public class Datenbankanbindung {
         return list;
     }
     
+        
+    /**
+     * 
+     * Fuegt einen Film in die Datenbank ein
+     * 
+     * @return Die Zeile in der Datenbank
+     */
+    
+    public static int filmEintragen(Film film) throws SQLException {
+        Statement st = conn.createStatement();
+        return st.executeUpdate("INSERT INTO film (idFilm, name, jahr, laenge, fsk)\nVALUES ('"+ film.getFilmID() + "', '" + film.getName() + "', '" + film.getJahr() + "', '" + film.getlaenge() + "', '" + film.getFsk() + "')");
+    }
+    
     /**
      * Holt sich die Filme aus der Datenbank
      * 
@@ -124,7 +137,7 @@ public class Datenbankanbindung {
         return GregorianCalendar.from(
             date.toLocalDate() // Date
             .atTime(time.toLocalTime()) // Specify time
-            .atZone(ZoneId.of("ECT")) // Interpret as ECT time
+            .atZone(ZoneId.systemDefault()) // Interpret as ECT time
             );
     }
 
