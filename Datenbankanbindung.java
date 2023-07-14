@@ -45,9 +45,9 @@ public class Datenbankanbindung {
      * @return Die Zeile in der Datenbank
      */
     
-    public static int filmEintragen(Film film) throws SQLException {
+    public static int filmEintragen(String name, int jahr, int laenge, int fsk) throws SQLException {
         Statement st = conn.createStatement();
-        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + film.getName() + "', '" + film.getJahr() + "', '" + film.getlaenge() + "', '" + film.getFsk() + "')");
+        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + name + "', '" + jahr + "', '" + laenge + "', '" + fsk + "')");
     }
     
     /**
