@@ -43,7 +43,13 @@ public class Datenbankanbindung {
      * @return Eine Liste mit allen Filmen
      */
     public static List<Film> getFilme() throws SQLException {
-        return getAllDataInColumn("film", rs -> new Film(rs.getInt("idFilm"), rs.getString("name"), rs.getInt("jahr"), rs.getInt("laenge"), rs.getInt("FSK")));
+        return getAllDataInColumn("film", 
+            rs -> new Film(rs.getInt("idFilm"), 
+                rs.getString("name"), 
+                rs.getInt("jahr"), 
+                rs.getInt("laenge"), 
+                rs.getInt("FSK")
+                ));
     }
     
     /**
@@ -70,10 +76,54 @@ public class Datenbankanbindung {
                 ));
     }
     
+    /**
+     * Holt sich die Plaetze aus der Datenbank
+     * 
+     * @return Eine Liste mit allen Plaetzen
+     */
+    public static List<Platz> getPlatz() throws SQLException {
+        return getAllDataInColumn("platz", 
+            rs -> new Platz(
+                rs.getInt("idPlatz"), 
+                (char) rs.getInt("reihe"), 
+                rs.getInt("platz"), 
+                rs.getInt("idKinosaal")
+                ));
+    }
+    
+    /**
+     * Holt sich die Reservierungen aus der Datenbank
+     * 
+     * @return Eine Liste mit allen Reservierungen
+     */
+    public static List<Reservierung> getReservierung() throws SQLException {
+        return getAllDataInColumn("reservierung", 
+            rs -> new Reservierung(
+                rs.getInt("idReservierung"), 
+                rs.getInt("idVorstellung"), 
+                rs.getInt("idBesucher"), 
+                rs.getInt("idPlatz")
+                ));
+    }
+    
+    /**
+     * Holt sich die Besuchern aus der Datenbank
+     * 
+     * @return Eine Liste mit allen Besuchern
+     */
+    public static List<Besucher> getBesucher() throws SQLException {
+        return getAllDataInColumn("besucher", 
+            rs -> new Besucher(
+                rs.getInt("idBesucher"), 
+                rs.getString("name"), 
+                rs.getInt("telefon_nummer")
+                ));
+    }
+    
     private static GregorianCalendar createGregFromSQLDate(Date date, Time time) {
         return GregorianCalendar.from(
             date.toLocalDate() // Date
-            .atTime(time.toLocalTime()) // Specify time 
+            .atTime(time.toLocalTime()) // Specify time
             .atZone(ZoneId.of("ECT")) // Interpret as ECT time
             );
     }
