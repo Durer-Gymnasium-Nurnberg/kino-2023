@@ -16,8 +16,8 @@ public class FensterFilm extends JFrame implements ActionListener {
     //private JTextField inhaltEingabe;
 
     private JButton reservieren;
-
-    public FensterFilm() {
+    
+    public FensterFilm() {  
         super("Filme einfügen");
 
         setSize(300,500);
@@ -25,7 +25,8 @@ public class FensterFilm extends JFrame implements ActionListener {
         hinzufuegen();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);        
+        setVisible(true);  
+        
     }
 
     private void hinzufuegen() {
@@ -114,7 +115,7 @@ public class FensterFilm extends JFrame implements ActionListener {
 
             if (i == 0) {
                 try {
-                    Datenbankanbindung.filmEintragen(name, jahr, laenge, fsk);
+                    Datenbankanbindung.filmEintragen(name, jahr, laenge, fsk);                    
                 } catch(SQLException e) {
                     e.printStackTrace();
                     System.out.println("SQLException: " + e.getMessage());

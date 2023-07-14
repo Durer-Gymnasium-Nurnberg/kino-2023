@@ -63,8 +63,6 @@ public class Film
     }
     
     public String toString(){
-        return name;
-    
-    
+        return name + " , FSK: " + fsk;
     }
 }
