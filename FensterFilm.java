@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class FensterFilm extends JFrame implements ActionListener {
     private JTextField nameEingabe;
@@ -114,8 +115,12 @@ public class FensterFilm extends JFrame implements ActionListener {
             if (i == 0) {
                 try {
                     Datenbankanbindung.filmEintragen(name, jahr, laenge, fsk);
-                } catch(Exception e) {
-                    System.out.println("Film konnte nicht eingefügt werden!");
+                } catch(SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQLException: " + e.getMessage());
+                    System.out.println("SQLState: " + e.getSQLState());
+                    System.out.println("VendorError: " + e.getErrorCode());
+                    //System.out.println("Film konnte nicht eingefügt werden!");
                 }
                 System.out.println("Film eingefügt!");
             } 
