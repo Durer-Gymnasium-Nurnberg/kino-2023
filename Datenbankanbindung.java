@@ -47,7 +47,21 @@ public class Datenbankanbindung {
     
     public static int filmEintragen(String name, int jahr, int laenge, int fsk) throws SQLException {
         Statement st = conn.createStatement();
-        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + name + "', '" + jahr + "', '" + laenge + "', '" + fsk + "')");
+        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + formatToSqlList(name, jahr, laenge, fsk) + ")");
+    }
+    
+    private static String formatToSqlList(Object... props) {
+        StringBuilder sb = new StringBuilder("'");
+        for (var a : props) {
+            sb.append(a.toString());
+            sb.append("', '");
+        }
+        return sb.substring(0, sb.length()-3);
+    }
+    
+    public static int ReservierungEintragen(int idVorstellung, int idBesucher, int idPlatz) throws SQLException {
+        Statement st = conn.createStatement();
+        return st.executeUpdate("INSERT INTO reservierung (idVorstellung, idBesucher, idPlatz)\nVALUES (" + formatToSqlList(idVorstellung, idBesucher, idPlatz) + ")");
     }
     
     /**
