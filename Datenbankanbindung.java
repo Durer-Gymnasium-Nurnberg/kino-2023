@@ -47,7 +47,7 @@ public class Datenbankanbindung {
     
     public static int filmEintragen(Film film) throws SQLException {
         Statement st = conn.createStatement();
-        return st.executeUpdate("INSERT INTO film (idFilm, name, jahr, laenge, fsk)\nVALUES ('"+ film.getFilmID() + "', '" + film.getName() + "', '" + film.getJahr() + "', '" + film.getlaenge() + "', '" + film.getFsk() + "')");
+        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + film.getName() + "', '" + film.getJahr() + "', '" + film.getlaenge() + "', '" + film.getFsk() + "')");
     }
     
     /**
