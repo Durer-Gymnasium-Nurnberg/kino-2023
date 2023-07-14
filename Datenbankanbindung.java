@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.function.*;
 import java.util.GregorianCalendar;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class Datenbankanbindung {
     private static Connection conn;
@@ -59,11 +61,21 @@ public class Datenbankanbindung {
      * @return Eine Liste mit allen Kinosaelen
      */
     public static List<Vorstellung> getVorstellung() throws SQLException {
-        return getAllDataInColumn("vorstellung", rs -> new Vorstellung(rs.getInt("idVorstellung"), createGregFromSQLDate(rs.getDate("datum"), rs.getTime("zeit")), rs.getInt("idFilm"), rs.getInt("idKinosaal")));
+        return getAllDataInColumn("vorstellung",
+            rs -> new Vorstellung(
+                rs.getInt("idVorstellung"), 
+                createGregFromSQLDate(rs.getDate("datum"), rs.getTime("zeit")),
+                rs.getInt("idFilm"),
+                rs.getInt("idKinosaal")
+                ));
     }
     
     private static GregorianCalendar createGregFromSQLDate(Date date, Time time) {
-        return new GregorianCalendar(GregorianCalendar.from(date.toLocalDate().atTime(time.toLocalTime()).atZone(0)));
+        return GregorianCalendar.from(
+            date.toLocalDate() // Date
+            .atTime(time.toLocalTime()) // Specify time 
+            .atZone(ZoneId.of("ECT")) // Interpret as ECT time
+            );
     }
 
 }
