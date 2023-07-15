@@ -24,7 +24,8 @@ public class Fenster extends JFrame implements ActionListener {
     JFrame jcbJFrameF = new JFrame();
     JFrame jcbJFrameV = new JFrame();
     JFrame jcbJFrameS = new JFrame();
-    private String wahlFilm;
+    //private String wahlFilm;
+    private Film wahlFilm;
     private Vector wahlVorstellung;
     private String wahlSitz;
     
@@ -52,7 +53,8 @@ public class Fenster extends JFrame implements ActionListener {
         if (verursacher == filmAuswahl)
         {
             JComboBox cbf = (JComboBox)event.getSource();
-            wahlFilm = (String)cbf.getSelectedItem();
+            //wahlFilm = (String)cbf.getSelectedItem();
+            wahlFilm = (Film) cbf.getSelectedItem();
         }
         if (verursacher == vorstellungsAuswahl)
         {
