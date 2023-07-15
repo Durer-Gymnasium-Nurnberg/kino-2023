@@ -13,8 +13,15 @@ public class Datenbankanbindung {
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            //conn = DriverManager.getConnection("jdbc:mysql://172.28.40.54/kino?user=q11&password=dg");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/kino?user=root&password=");
+            //Verbindung zur MySQL-Datenbank (MariaDB) in xampp auf dem Lehrerrechner im Raum 105:
+            conn = DriverManager.getConnection("jdbc:mysql://172.28.40.54/kino?user=q11&password=dg");
+            
+            //Verbingung zur MySQL-Datenbank (MariaDB) in xampp auf eigenem Rechner:
+            //conn = DriverManager.getConnection("jdbc:mysql://localhost/kino?user=root&password=");
+            
+            //Verbindung zu einer MySQL-Datenbank auf einem externen Server von World2Web:
+            //conn = DriverManager.getConnection("jdbc:mysql://85.13.144.17/d03d56ab?user=d03d56ab&password=2BcyR5v32BjhzV");
+            
             System.out.println(conn);
         } catch(Exception e) {
             e.printStackTrace();
