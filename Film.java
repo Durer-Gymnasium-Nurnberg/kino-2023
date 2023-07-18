@@ -12,6 +12,7 @@ public class Film
     public Film(int filmID, String name, int jahr,int laenge,int fsk)
     {
         this.filmID = filmID;
+        this.name = name;
         this.jahr = jahr;
         this.laenge = laenge;
         this.fsk = fsk;

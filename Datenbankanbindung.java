@@ -33,10 +33,8 @@ public class Datenbankanbindung {
         public R apply(P arg) throws SQLException;
     }
 
-    //public static <E> List<E> getAllDataInColumn(String column, SQLFunction<ResultSet, E> cons) throws SQLException {
-    public static <E> Vector<E> getAllDataInColumn(String column, SQLFunction<ResultSet, E> cons) throws SQLException {
-        //var list = new ArrayList<E>();
-        Vector<E> list = new Vector<E>();
+    public static <E> List<E> getAllDataInColumn(String column, SQLFunction<ResultSet, E> cons) throws SQLException {
+        var list = new ArrayList<E>();
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM " + column);
         while (rs.next()) {
@@ -78,8 +76,7 @@ public class Datenbankanbindung {
      * 
      * @return Eine Liste mit allen Filmen
      */
-    //public static List<Film> getFilme() throws SQLException {
-    public static Vector<Film> getFilme() throws SQLException {    
+    public static List<Film> getFilme() throws SQLException {  
         return getAllDataInColumn("film", 
             rs -> new Film(rs.getInt("idFilm"), 
                     rs.getString("name"), 
