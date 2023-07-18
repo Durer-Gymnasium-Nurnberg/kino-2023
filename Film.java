@@ -8,7 +8,9 @@ public class Film
     public int fsk;
     public String titel;
     
-    
+    /**
+     * Konstruktor der Klasse Film
+     */
     public Film(int filmID, String name, int jahr,int laenge,int fsk)
     {
         this.filmID = filmID;
@@ -17,6 +19,7 @@ public class Film
         this.laenge = laenge;
         this.fsk = fsk;
     }
+    
     
     public int getFilmID(){
         return filmID;

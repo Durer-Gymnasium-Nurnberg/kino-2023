@@ -5,6 +5,9 @@ public class Reservierung
     int vorstellung_ID_Vorstellung;
     int besucher_ID_Besucher;
     int platz_ID_Platz;
+    /**
+     * Konstruktor der Klasse Reservierung
+     */
     public Reservierung(int reservierung_ID, int vorstellung_ID_Vorstellung, int besucher_ID_Besucher, int platz_ID_Platz)
     {
         this.reservierung_ID = reservierung_ID;

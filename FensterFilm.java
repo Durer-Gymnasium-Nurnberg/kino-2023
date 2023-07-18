@@ -6,6 +6,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+    /**
+     * Konstruktor der Klasse FensterFilm
+     */
 
 public class FensterFilm extends JFrame implements ActionListener {
     private JTextField nameEingabe;
