@@ -4,7 +4,9 @@ public class Besucher
     public int besucher_ID;
     public String name;
     public int telefon_nummer;
-
+    /**
+     * Konstruktor der Klasse Besucher
+     */ 
     public Besucher(int besucher_ID, String name, int telefon_nummer){
         this.besucher_ID = besucher_ID;
         this.name = name;

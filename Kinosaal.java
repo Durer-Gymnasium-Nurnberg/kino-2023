@@ -2,6 +2,9 @@
 public class Kinosaal
 {
     public int kinoSaalID;
+    /**
+     * Konstruktor der Klasse Kinosaal
+     */
     public Kinosaal(int kinoSaalID)
     {
         this.kinoSaalID = kinoSaalID;

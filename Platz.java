@@ -5,6 +5,9 @@ public class Platz
     public char reihe;
     public int platz;
     public int kinosaal_ID_Kinosaal;
+    /**
+     * Konstruktor der Klasse Platz
+     */
     public Platz(int platz_ID, char reihe, int platz, int kinosaal_ID_Kinosaal)
     {
         this.platz_ID = platz_ID;
