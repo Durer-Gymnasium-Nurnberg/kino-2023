@@ -69,9 +69,14 @@ public class Datenbankanbindung {
         return sb.substring(0, sb.length()-3);
     }
 
-    public static int ReservierungEintragen(int idVorstellung, int idBesucher, int idPlatz) throws SQLException {
+    public static int reservierungEintragen(int idVorstellung, int idBesucher, int idPlatz) throws SQLException {
         Statement st = conn.createStatement();
-        return st.executeUpdate("INSERT INTO reservierung (idVorstellung, idBesucher, idPlatz)\nVALUES (" + formatToSqlList(idVorstellung, idBesucher, idPlatz) + ")");
+        return st.executeUpdate("INSERT INTO reservierung (Vorstellung_idVorstellung, Besucher_idBesucher, Platz_idPlatz)\nVALUES (" + formatToSqlList(idVorstellung, idBesucher, idPlatz) + ")");
+    }
+    
+    public static int vorstellungEintragen(GregorianCalendar date, int idFilm, int idKinosaal) {
+        Statement st = conn.createStatement();
+        return st.executeUpdate("INSERT INTO vorstellung (datum, zeit, Film_idFilm, Kinosaal_idKinosaal)\nVALUES (" + formatToSqlList(createDateFromGreg(date), createTimeFromGreg(date)) + ")");
     }
 
     /**
@@ -164,5 +169,12 @@ public class Datenbankanbindung {
             .atZone(ZoneId.systemDefault()) // Interpret as ECT time
         );
     }
-
+    
+    private static Date createDateFromGreg(GregorianCalendar greg) {
+        return Date.valueOf(greg.toZonedDateTime().toLocalDate());
+    }
+    
+    private static Time createTimeFromGreg(GregorianCalendar greg) {
+        return Time.valueOf(greg.toZonedDateTime().toLocalTime());
+    }
 }
