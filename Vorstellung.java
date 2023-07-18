@@ -7,6 +7,10 @@ public class Vorstellung
     private int kinoSaalID;
     private GregorianCalendar datumZeit;
     
+    /**
+     * Konstruktor der Klasse Vorstellung
+     */
+    
     public Vorstellung(int vorstellungID, GregorianCalendar datumZeit, int filmID, int kinoSaalID)
     {
         this.vorstellungID = vorstellungID;

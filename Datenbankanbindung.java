@@ -12,7 +12,10 @@ public class Datenbankanbindung {
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            // Deprecated
+            //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").getConstructors()[0].newInstance();
+            //new com.mysql.cj.jdbc.Driver();
             //Verbindung zur MySQL-Datenbank (MariaDB) in xampp auf dem Lehrerrechner im Raum 105:
             conn = DriverManager.getConnection("jdbc:mysql://172.28.40.54/kino?user=q11&password=dg");
             

@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import java.util.List;
 import java.sql.SQLException;
 
+     /**
+     * Konstruktor der Klasse Fenster
+     */
 public class Fenster extends JFrame implements ActionListener {
     public JTextField nameEingabe;
     public JButton reservieren;
