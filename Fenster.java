@@ -12,22 +12,22 @@ import java.util.List;
 import java.sql.SQLException;
 
 public class Fenster extends JFrame implements ActionListener {
-    private JTextField nameEingabe;
-    private JButton reservieren;
+    public JTextField nameEingabe;
+    public JButton reservieren;
 
-    private JButton bestätigenF;
-    private JButton bestätigenV;
-    private JButton bestätigenS;
-    private JComboBox<Film> filmAuswahl;
-    private JComboBox vorstellungsAuswahl;
-    private JComboBox sitzplatzAuswahl;
+    public JButton bestätigenF;
+    public JButton bestätigenV;
+    public JButton bestätigenS;
+    public JComboBox<Film> filmAuswahl;
+    public JComboBox vorstellungsAuswahl;
+    public JComboBox sitzplatzAuswahl;
     JFrame jcbJFrameF = new JFrame();
     JFrame jcbJFrameV = new JFrame();
     JFrame jcbJFrameS = new JFrame();
-    //private String wahlFilm;
-    private Film wahlFilm;
-    private Vector wahlVorstellung;
-    private String wahlSitz;
+    //public String wahlFilm;
+    public Film wahlFilm;
+    public Vector wahlVorstellung;
+    public String wahlSitz;
     
        
     public Fenster() {
@@ -76,7 +76,7 @@ public class Fenster extends JFrame implements ActionListener {
 
         JLabel name = new JLabel("Filmauswahl");
         panel.add(name);
-        // String comboBoxListe[] = {"Thor", "Thor9", "Leos privateste Momente"};
+        // String comboBoxListe[] = {"Thor", "Thor9", "Leos publicste Momente"};
         String comboBoxListe[] = {};
 
         //Datenbankanbindung.getFilme()
