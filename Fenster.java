@@ -84,7 +84,8 @@ public class Fenster extends JFrame implements ActionListener {
         
         Vector<Film> filmListe = null;
         try {
-            filmListe = (Vector<Film>) Datenbankanbindung.getFilme();
+            //filmListe = (Vector<Film>) Datenbankanbindung.getFilme();
+            filmListe = new Vector <Film>(Datenbankanbindung.getFilme());
             
             //Ausgabe, ob etwas im Vector drin ist
             for(Film f : filmListe) {

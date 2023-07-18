@@ -46,7 +46,8 @@ public class FensterTest extends JFrame implements ActionListener, ItemListener 
         
         Vector<Film> filmListe = null;
         try {
-            filmListe = (Vector<Film>) Datenbankanbindung.getFilme();            
+             //filmListe = (Vector<Film>) Datenbankanbindung.getFilme();
+            filmListe = new Vector <Film>(Datenbankanbindung.getFilme());           
         } catch (SQLException e) {
             e.printStackTrace();
             //System.out.println("Filme konnten aus der DB gelesen werden!");
