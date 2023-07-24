@@ -14,7 +14,7 @@ public class Datenbankanbindung {
         try {
             // Deprecated
             //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            Class.forName("com.mysql.cj.jdbc.Driver").getConstructors()[0].newInstance();
+            //Class.forName("com.mysql.cj.jdbc.Driver").getConstructors()[0].newInstance();
             //new com.mysql.cj.jdbc.Driver();
             //Verbindung zur MySQL-Datenbank (MariaDB) in xampp auf dem Lehrerrechner im Raum 105:
             conn = DriverManager.getConnection("jdbc:mysql://172.28.40.54/kino?user=q11&password=dg");
@@ -23,7 +23,7 @@ public class Datenbankanbindung {
             //conn = DriverManager.getConnection("jdbc:mysql://localhost/kino?user=root&password=");
             
             //Verbindung zu einer MySQL-Datenbank auf einem externen Server von World2Web:
-            //conn = DriverManager.getConnection("jdbc:mysql://85.13.144.17/d03d56ab?user=d03d56ab&password=2BcyR5v32BjhzV");
+            conn = DriverManager.getConnection("jdbc:mysql://85.13.144.17/d03d56ab?user=d03d56ab&password=2BcyR5v32BjhzV");
             
             System.out.println(conn);
         } catch(Exception e) {
@@ -74,10 +74,12 @@ public class Datenbankanbindung {
         return st.executeUpdate("INSERT INTO reservierung (Vorstellung_idVorstellung, Besucher_idBesucher, Platz_idPlatz)\nVALUES (" + formatToSqlList(idVorstellung, idBesucher, idPlatz) + ")");
     }
     
+    /*
     public static int vorstellungEintragen(GregorianCalendar date, int idFilm, int idKinosaal) {
         Statement st = conn.createStatement();
         return st.executeUpdate("INSERT INTO vorstellung (datum, zeit, Film_idFilm, Kinosaal_idKinosaal)\nVALUES (" + formatToSqlList(createDateFromGreg(date), createTimeFromGreg(date)) + ")");
     }
+    */
 
     /**
      * Holt sich die Filme aus der Datenbank
