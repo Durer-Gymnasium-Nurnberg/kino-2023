@@ -47,19 +47,7 @@ public class Datenbankanbindung {
         st.close();            
         return list;
     }
-
-    /**
-     * 
-     * Fuegt einen Film in die Datenbank ein
-     * 
-     * @return Die Zeile in der Datenbank
-     */
-
-    public static int filmEintragen(String name, int jahr, int laenge, int fsk) throws SQLException {
-        Statement st = conn.createStatement();
-        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + formatToSqlList(name, jahr, laenge, fsk) + ")");
-    }
-
+    
     private static String formatToSqlList(Object... props) {
         StringBuilder sb = new StringBuilder("'");
         for (var a : props) {
@@ -69,17 +57,49 @@ public class Datenbankanbindung {
         return sb.substring(0, sb.length()-3);
     }
 
+    /**
+     * 
+     * Fuegt einen Film in die Datenbank ein
+     * 
+     * @return Die Zeile in der Datenbank
+     */
+    public static int filmEintragen(String name, int jahr, int laenge, int fsk) throws SQLException {
+        Statement st = conn.createStatement();
+        return st.executeUpdate("INSERT INTO film (name, jahr, laenge, fsk)\nVALUES (" + formatToSqlList(name, jahr, laenge, fsk) + ")");
+    }
+
+    /**
+     * 
+     * Fuegt eine Reservierung in die Datenbank ein
+     * 
+     * @return Die Zeile in der Datenbank
+     */
     public static int reservierungEintragen(int idVorstellung, int idBesucher, int idPlatz) throws SQLException {
         Statement st = conn.createStatement();
         return st.executeUpdate("INSERT INTO reservierung (Vorstellung_idVorstellung, Besucher_idBesucher, Platz_idPlatz)\nVALUES (" + formatToSqlList(idVorstellung, idBesucher, idPlatz) + ")");
     }
     
-    /*
-    public static int vorstellungEintragen(GregorianCalendar date, int idFilm, int idKinosaal) {
+    /**
+     * 
+     * Fuegt eine Vorstellung in die Datenbank ein
+     * 
+     * @return Die Zeile in der Datenbank
+     */
+    public static int vorstellungEintragen(GregorianCalendar date, int idFilm, int idKinosaal) throws SQLException {
         Statement st = conn.createStatement();
         return st.executeUpdate("INSERT INTO vorstellung (datum, zeit, Film_idFilm, Kinosaal_idKinosaal)\nVALUES (" + formatToSqlList(createDateFromGreg(date), createTimeFromGreg(date)) + ")");
     }
-    */
+    
+    /**
+     * 
+     * Fuegt eine Besucher in die Datenbank ein
+     * 
+     * @return Die Zeile in der Datenbank
+     */
+    public static int besucherEinfuegen(String name, int telefonnr) throws SQLException {
+        Statement st = conn.createStatement();
+        return st.executeUpdate("INSERT INTO besucher (name, telefonnr)\nVALUES (" + formatToSqlList(name, telefonnr) + ")");
+    }
 
     /**
      * Holt sich die Filme aus der Datenbank
@@ -106,9 +126,9 @@ public class Datenbankanbindung {
     }
 
     /**
-     * Holt sich die Kinosaele aus der Datenbank
+     * Holt sich die Vorstellungen aus der Datenbank
      * 
-     * @return Eine Liste mit allen Kinosaelen
+     * @return Eine Liste mit allen Vorstellungen
      */
     public static List<Vorstellung> getVorstellung() throws SQLException {
         return getAllDataInColumn("vorstellung",
