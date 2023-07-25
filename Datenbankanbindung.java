@@ -14,7 +14,7 @@ public class Datenbankanbindung {
         try {
             // Deprecated
             //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            //Class.forName("com.mysql.cj.jdbc.Driver").getConstructors()[0].newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").getConstructors()[0].newInstance();
             //new com.mysql.cj.jdbc.Driver();
             //Verbindung zur MySQL-Datenbank (MariaDB) in xampp auf dem Lehrerrechner im Raum 105:
             conn = DriverManager.getConnection("jdbc:mysql://172.28.40.54/kino?user=q11&password=dg");
@@ -23,7 +23,7 @@ public class Datenbankanbindung {
             //conn = DriverManager.getConnection("jdbc:mysql://localhost/kino?user=root&password=");
             
             //Verbindung zu einer MySQL-Datenbank auf einem externen Server von World2Web:
-            conn = DriverManager.getConnection("jdbc:mysql://85.13.144.17/d03d56ab?user=d03d56ab&password=2BcyR5v32BjhzV");
+            //conn = DriverManager.getConnection("jdbc:mysql://85.13.144.17/d03d56ab?user=d03d56ab&password=2BcyR5v32BjhzV");
             
             System.out.println(conn);
         } catch(Exception e) {
@@ -149,7 +149,7 @@ public class Datenbankanbindung {
         return getAllDataInColumn("platz", 
             rs -> new Platz(
                     rs.getInt("idPlatz"), 
-                    (char) rs.getInt("reihe"), 
+                    rs.getString("reihe").toCharArray()[0], 
                     rs.getInt("platz"), 
                     rs.getInt("idKinosaal")
                 ));
@@ -180,7 +180,7 @@ public class Datenbankanbindung {
             rs -> new Besucher(
                     rs.getInt("idBesucher"), 
                     rs.getString("name"), 
-                    rs.getInt("telefon_nummer")
+                    rs.getInt("telefonnr")
                 ));
     }
 
